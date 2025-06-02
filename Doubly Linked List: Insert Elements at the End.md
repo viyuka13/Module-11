@@ -35,9 +35,52 @@ To write a Python program that:
 ---
 
 ## 💻 Program
-Add Code here
+      class Node:
+          def __init__(self, data):
+              self.item = data
+              self.nref = None
+              self.pref = None
+      
+      class DoublyLinkedList:
+          def __init__(self):
+              self.start_node = None
+      
+          def insert_in_emptylist(self, data):
+              new_node = Node(data)
+              self.start_node = new_node
+      
+          def insert_at_end(self, data):
+              if self.start_node is None:
+                  self.insert_in_emptylist(data)
+                  return
+              n = self.start_node
+              while n.nref is not None:
+                  n = n.nref
+              new_node = Node(data)
+              n.nref = new_node
+              new_node.pref = n
+      
+          def traverse_list(self):
+              if self.start_node is None:
+                  print("The list is empty")
+                  return
+              n = self.start_node
+              while n is not None:
+                  print(n.item, end=' ')
+                  n = n.nref
+              print()
+      
+      # Create doubly linked list instance
+      dll = DoublyLinkedList()
+      
+      dll.insert_at_end(10)
+      dll.insert_at_end(20)
+      dll.insert_at_end(30)
+      
+      dll.traverse_list()
 
 ## Sample Output
+![image](https://github.com/user-attachments/assets/a3763d01-69aa-4e5a-b84c-11e2ae0674d3)
 
 ## Result
-
+The program defines a Node class for doubly linked list nodes and a DoublyLinkedList class to manage the list. It inserts elements at the end, maintaining previous and next references, and prints the elements in order when traversed. The output correctly displays the inserted elements in sequence.
