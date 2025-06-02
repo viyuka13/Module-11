@@ -34,9 +34,56 @@ To write a Python program that:
 ---
 
 ## 💻 Program
-Add Code here
+      class Nodeq:
+          def __init__(self, data):
+              self.data = data
+              self.next = None
+              self.prev = None
+      
+      class DoublyLinkedList:
+          def __init__(self):
+              self.head = None
+      
+          def insert_beginning(self, data):
+              new_node = Nodeq(data)
+              if self.head is None:
+                  self.head = new_node
+                  return
+              new_node.next = self.head
+              self.head.prev = new_node
+              self.head = new_node
+      
+          def insert_end(self, data):
+              new_node = Nodeq(data)
+              if self.head is None:
+                  self.head = new_node
+                  return
+              curr = self.head
+              while curr.next is not None:
+                  curr = curr.next
+              curr.next = new_node
+              new_node.prev = curr
+      
+          def search(self, data):
+              curr = self.head
+              while curr is not None:
+                  if curr.data == data:
+                      return True
+                  curr = curr.next
+              return False
+      
+      dll = DoublyLinkedList()
+      
+      dll.insert_beginning(10)
+      dll.insert_beginning(20)
+      dll.insert_end(30)
+      dll.insert_end(40)
+      
+      print(dll.search(20))  # True
+      print(dll.search(50))  # False
 
 ## Sample Output
+![image](https://github.com/user-attachments/assets/fc0d6a4a-887a-498c-b245-445cddea110b)
 
 ## Result
-
+The program defines a doubly linked list with nodes having data, next, and prev. It supports inserting nodes at the beginning and end of the list, and searching for elements. The search method correctly returns True if the element exists, otherwise False. The output confirms the presence of 20 and absence of 50 in the list.
