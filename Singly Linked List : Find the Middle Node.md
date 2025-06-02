@@ -36,10 +36,53 @@ To write a Python program that:
 ---
 
 ## 💻 Program
-Add code here
+      class Node:
+          def __init__(self, data):
+              self.data = data
+              self.next = None
+      
+      class LinkedList:
+          def __init__(self):
+              self.head = None
+      
+          def append(self, data):
+              new_node = Node(data)
+              if self.head is None:
+                  self.head = new_node
+                  return
+              curr = self.head
+              while curr.next:
+                  curr = curr.next
+              curr.next = new_node
+      
+          def get_middle_recursive(self, slow, fast):
+              # Base case: fast is None or fast.next is None
+              if fast is None or fast.next is None:
+                  return slow
+              # Move slow by one, fast by two
+              return self.get_middle_recursive(slow.next, fast.next.next)
+      
+          def find_middle(self):
+              if self.head is None:
+                  return None
+              middle_node = self.get_middle_recursive(self.head, self.head)
+              return middle_node.data
+      
+      # Input reading
+      n = int(input())
+      elements = list(map(int, input().split()))
+      
+      # Create linked list and append elements
+      ll = LinkedList()
+      for el in elements:
+          ll.append(el)
+      
+      # Find and print middle element
+      print(ll.find_middle())
 
 ## Sample Input & Output
+![image](https://github.com/user-attachments/assets/06b83cdb-2717-4604-a052-1092a725a5b6)
 
 ## Result
-
+The program successfully creates a singly linked list from the user input and uses a recursive approach with two pointers (slow and fast) to find the middle node.
 
