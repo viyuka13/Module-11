@@ -34,8 +34,41 @@ To write a Python program that adds a **new element** at the **start** of a sing
 ---
 
 ## Program
-Add Code Here
+      class Node:
+          def __init__(self, data):
+              self.data = data
+              self.next = None
+      
+      class LinkedList:
+          def __init__(self):
+              self.head = None
+      
+          def push_front(self, newElement):
+              new_node = Node(newElement)
+              new_node.next = self.head
+              self.head = new_node
+      
+          def PrintList(self):
+              if self.head is None:
+                  print("The list is empty.")
+                  return
+              temp = self.head
+              while temp is not None:
+                  print(temp.data, end=" ")
+                  temp = temp.next
+              print()
+      
+      
+      MyList = LinkedList()
+      
+      MyList.push_front(10)
+      MyList.push_front(20)
+      MyList.push_front(30)
+      MyList.push_front(40)
+      
+      MyList.PrintList()
 ## Sample Output
+![image](https://github.com/user-attachments/assets/9e6df298-6743-4718-8df4-c76e8d6af5cb)
 
 ## Result
-
+The program creates a singly linked list and inserts each new element at the front. Therefore, the last inserted element (40) becomes the head of the list, and the elements are printed in reverse order of insertion. The method PrintList() prints the entire list from head to tail.
